@@ -152,6 +152,8 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 alias addrmonr="xrandr --output DP1 --auto --rotate left --right-of LVDS1"
 alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
 alias addlmon="xrandr --output DP1 --auto --left-of LVDS1"
+alias dp1="xrandr --output DP1 --auto"
+alias dp1off="xrandr --output DP1 --off"
 
 #ssh/sftp
 alias gohome="ssh -X andrew@aferr.mooo.com"
@@ -169,9 +171,5 @@ alias fluster="sftp andrew@cluster.csl.cornell.edu"
 alias tcluster="ssh -X andrew@ubuntu-test.csl.cornell.edu"
 alias fcluster="sftp andrew@ubuntu-test.csl.cornell.edu"
 
+#starcluster
 alias fixshell="starcluster put imagehost /lib/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termite"
-alias nimbus="ssh -i /home/andrew/.ec2keys/nimbuskey.pem ubuntu@ec2-50-17-12-184.compute-1.amazonaws.com"
-
-alias dp1="xrandr --output DP1 --auto"
-alias dp1off="xrandr --output DP1 --off"
-
