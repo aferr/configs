@@ -1,0 +1,38 @@
+Config { font = "xft:Droid Sans Mono:size=10:hinting=true:antialias=true" 
+       , bgColor = "#fdf6e3"
+       , fgColor = "#657b83"
+       , position = TopW L 100
+       , lowerOnStart = True
+       , commands = [ 
+		      Run Weather "KITH" 
+			["-t","<station>: <tempF>F",
+			"-L","50","-H","75",
+			"--normal","#859900","--high","#dc322f","--low","#268bd2"] 
+			36000
+                    , Run Network "wlan0" 
+			["-L","0","-H","300",
+			"--normal","#859900","--high","#dc322f"]
+			 7
+                    , Run Cpu ["-L","3","-H","50","--normal","#859900","--high","#dc322f"] 9
+                    , Run Memory ["-t","Mem: <usedratio>%"] 13
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Date "%a %b %_d %Y %l:%M:%S" "date" 10
+		    , Run StdinReader
+		    , Run BatteryP ["BAT0"]
+              		["-t", "<acstatus><watts> (<left>% / <timeleft>)",
+               		"-L", "10", "-H", "80", "-p", "3",
+               		"--", "-O", "<fc=#859900>On</fc> - ", "-o", "",
+               		"-L", "-15", "-H", "-5",
+               		"-l", "#dc322f", "-m", "859900", "-h", "#859900"]
+              		600 
+		    , Run Com "/home/andrew/.scripts/volume.sh" [] "volume" 10
+ 		    , Run CpuFreq
+			 ["-t", "Freq:<cpu0>|<cpu1>|<cpu2>|<cpu3>", 
+			 "-L", "0", "-H", "3",
+			 "-l", "#268bd2", "-n","#859900", "-h", "#dc322f"]
+			 50
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %cpu% * %memory% * %wlan0% | %battery% | Vol: %volume% <fc=#cb4b16>%date%</fc>" 
+      }

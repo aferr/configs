@@ -1,0 +1,170 @@
+!! drop in Solarized colorscheme for Xresources/Xdefaults
+
+!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
+!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+
+!!Solarized Colors
+#define S_base03_trans [85]#002b36
+#define S_base00_trans [85]#657b83
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+! Shomshing scheme
+#define shom_background #101010
+#define shom_foreground #aaaaaa
+! Black + DarkGrey
+#define shom_color0  #1b1b1b
+#define shom_color8  #555555
+! Red
+#define shom_color1  #cc4444
+#define shom_color9  #cc335f 
+! Green
+#define shom_color2  #55aa55
+#define shom_color10 #77aa22
+! Yellow
+#define shom_color3  #ee9966
+#define shom_color11 #ffdd88
+! Blue
+#define shom_color4  #7777ff
+#define shom_color12 #3388bb
+! Magenta
+#define shom_color5  #bb33bb
+#define shom_color13 #9966ff
+! Cyan
+#define shom_color6  #22aaaa
+#define shom_color14 #33aa77
+! LightGrey + White
+#define shom_color7 #808080
+#define shom_color15 #ffffff
+
+
+! Parker Brothers colors
+ #define pb_background        #0F0E0F
+ #define pb_foreground        #A59461
+! !black
+ #define pb_color0            #322a2c
+ #define pb_color8            #46423b
+! !red
+ #define pb_color1            #79220E
+ #define pb_color9            #AA261F
+! !green
+ #define pb_color2            #344B1B
+ #define pb_color10           #76550F
+! !yellow
+ #define pb_color3            #B45B00
+ #define pb_color11           #B57F02
+! !blue
+ #define pb_color4            #434045
+ #define pb_color12           #908862
+! !magenta
+ #define pb_color5            #5C1E25
+ #define pb_color13           #624A35
+! !cyan
+ #define pb_color6            #394745
+ #define pb_color14           #393E38
+! !white
+ #define pb_color7            #AE8842
+ #define pb_color15           #A59058
+
+
+!urxvt*background: pb_background
+!urxvt*foreground: pb_foreground
+!urxvt*color0: pb_color0
+!urxvt*color1: pb_color1
+!urxvt*color2: pb_color2
+!urxvt*color3: pb_color3
+!urxvt*color4: pb_color4
+!urxvt*color5: pb_color5
+!urxvt*color6: pb_color6
+!urxvt*color7: pb_color7
+!urxvt*color8: pb_color8
+!urxvt*color9: pb_color9
+!urxvt*color10: pb_color10
+!urxvt*color11: pb_color11
+!urxvt*color12: pb_color12
+!urxvt*color13: pb_color13
+!urxvt*color14: pb_color14
+!urxvt*color15: pb_color15
+
+
+*background:            S_base3
+*foreground:            S_base00
+!*cursorColor:           S_base1
+!*pointerColorBackground:S_base01
+!*pointerColorForeground:S_base1
+
+!! black dark/light
+urxvt*color0:                S_base02
+urxvt*color8:                S_base03
+
+!! red dark/light
+urxvt*color1:                S_red
+urxvt*color9:                S_orange
+
+!! green dark/light
+urxvt*color2:                S_green
+urxvt*color10:               S_base01
+
+!! yellow dark/light
+urxvt*color3:                S_yellow
+urxvt*color11:               S_base00
+
+!! blue dark/light
+urxvt*color4:                S_blue
+urxvt*color12:               S_base0
+
+!! magenta dark/light
+urxvt*color5:                S_magenta
+urxvt*color13:               S_violet
+
+!! cyan dark/light
+urxvt*color6:                S_cyan
+urxvt*color14:               S_base1
+
+!! white dark/light
+urxvt*color7:                S_base2
+urxvt*color15:               S_base3
+
+!Urxvt--
+urxvt*font: xft:Droid Sans Mono:pixelsize=11:hinting=true:antialias=true
+!URxvt*font:					xft:Inconsolata-dz for Powerline:size=12
+!urxvt*font: xft:Terminus:size=9
+!URxvt.font: xft:Consolas:size=13, xft:Inconsolata for Powerline
+urxvt*fading: 0
+urxvt*scrollBar: false
+
+!xterm
+!XTerm*faceName: Terminus
+!XTerm*faceSize: 9.5
+
+URxvt*dynamicColors:on
