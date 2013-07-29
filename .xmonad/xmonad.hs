@@ -152,7 +152,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "claws-mail" [])
     , ((modMask,	       xK_w     ), safeSpawn "google-chrome" [])
-    , ((modMask,               xK_f     ), safeSpawn "termite -e ranger" [])
+    , ((modMask,               xK_f     ), safeSpawn "termite -e ranger" )
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
     , ((modMask,	       xK_m     ), safeSpawn "matlab -desktop" [])
@@ -173,8 +173,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- floating layer stuff
-    , ((modMask,               xK_t     ), withFocused $ windows . W.sink)
-
+    , ((modMask,               xK_t     ), withFocused $ windows . W.sink) 
     -- refresh
     , ((modMask,               xK_n     ), refresh)
 
