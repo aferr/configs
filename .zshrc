@@ -80,6 +80,7 @@ printf '%s' "${terminfo[rmkx]}"
 fi
 
 ##Path Environment Variables
+path+=$HOME/.gem/ruby/2.0.0/bin
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
 
 ##Aliases
