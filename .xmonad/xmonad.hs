@@ -152,7 +152,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "claws-mail" [])
     , ((modMask,	       xK_w     ), safeSpawn "google-chrome" [])
-    , ((modMask,               xK_f     ), safeSpawn "nautilus" [])
+    , ((modMask,               xK_f     ), safeSpawn "termite -e ranger" [])
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
     , ((modMask,	       xK_m     ), safeSpawn "matlab -desktop" [])
