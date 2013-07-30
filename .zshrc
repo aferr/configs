@@ -152,9 +152,9 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 #Monitor Shenanigans
 alias addrmonr="xrandr --output DP1 --auto --rotate left --right-of LVDS1"
 alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
-alias addlmon="xrandr --output DP1 --auto --left-of LVDS1"
+alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && feh --bg-scale .background"
 alias dp1="xrandr --output DP1 --auto"
-alias dp1off="xrandr --output DP1 --off"
+alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
 
 #ssh/sftp
 alias gohome="ssh -X andrew@aferr.mooo.com"
