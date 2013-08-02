@@ -4,7 +4,7 @@ xset fp rehash
 xset +fp /usr/share/fonts/TTF
 xset fp rehash
 xrdb -merge .Xresources
-feh --bg-scale /home/andrew/.background
+/home/andrew/bin/wallpaper &
 xmodmap .Xmodmap
 xmodmap -e "clear lock"
 xflux -z 14850

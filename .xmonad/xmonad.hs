@@ -32,6 +32,8 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.Spiral
 import XMonad.Layout.Grid
 import XMonad.Layout.GridVariants
+import XMonad.Layout.WindowNavigation
+import qualified XMonad.Layout.WindowNavigation
 
 -------------------------------------------------------------------------------
 -- Theme --
@@ -82,8 +84,8 @@ myConfig = defaultConfig { workspaces = workspaces'
 manageHook' = composeAll [ isFullscreen             --> doFullFloat
 			 -- [isFullscreen --> (doF W.focusDown <+> doFullFloat,
                          , className =? "Deluge"    --> doShift "0"
-			 , insertPosition Below Newer
-			 , transience'
+                         , insertPosition Below Newer
+                         , transience'
                          ]
 
 
@@ -121,7 +123,7 @@ tabTheme1 = defaultTheme { decoHeight = 16
 workspaces' = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 -- layouts
-layoutHook' = tile ||| mtile ||| tab ||| full ||| sp
+layoutHook' = windowNavigation (tile ||| mtile ||| tab ||| full ||| sp)
   where
     golden = toRational (2/(1+sqrt(5)::Double))
     rt = ResizableTall 1 (2/100) (1/2) []
@@ -152,7 +154,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "claws-mail" [])
     , ((modMask,	       xK_w     ), safeSpawn "google-chrome" [])
-    , ((modMask,               xK_f     ), safeSpawn "termite -e ranger" )
+    , ((modMask,               xK_f     ), spawn "termite -e ranger" )
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
     , ((modMask,	       xK_m     ), safeSpawn "matlab -desktop" [])
@@ -179,24 +181,32 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- focus
     , ((modMask,               xK_Tab   ), windows W.focusDown)
-    , ((modMask,               xK_j     ), windows W.focusDown)
-    , ((modMask,               xK_k     ), windows W.focusUp)
+    , ((modMask,               xK_h     ), sendMessage $ Go XMonad.Layout.WindowNavigation.L)
+    , ((modMask,               xK_l     ), sendMessage $ Go XMonad.Layout.WindowNavigation.R)
+    , ((modMask,               xK_k     ), sendMessage $ Go XMonad.Layout.WindowNavigation.U)
+    , ((modMask,               xK_j     ), sendMessage $ Go XMonad.Layout.WindowNavigation.D)
+    --, ((modMask,               xK_j     ), windows W.focusDown)
+    --, ((modMask,               xK_k     ), windows W.focusUp)
     -- , ((modMask,               xK_m     ), windows W.focusMaster)
 
     -- swapping
     , ((modMask,               xK_Return), windows W.swapMaster)
-    , ((modMask .|. shiftMask, xK_j     ), windows W.swapDown  )
-    , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modMask .|. shiftMask, xK_h     ), sendMessage $ Swap XMonad.Layout.WindowNavigation.L)
+    , ((modMask .|. shiftMask, xK_l     ), sendMessage $ Swap XMonad.Layout.WindowNavigation.R)
+    , ((modMask .|. shiftMask, xK_k     ), sendMessage $ Swap XMonad.Layout.WindowNavigation.U)
+    , ((modMask .|. shiftMask, xK_j     ), sendMessage $ Swap XMonad.Layout.WindowNavigation.D)
+    --, ((modMask .|. shiftMask, xK_j     ), windows W.swapDown  )
+    --, ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    )
 
     -- increase or decrease number of windows in the master area
     , ((modMask              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- resizing
-    , ((modMask,               xK_h     ), sendMessage Shrink)
-    , ((modMask,               xK_l     ), sendMessage Expand)
-    , ((modMask .|. shiftMask, xK_h     ), sendMessage MirrorShrink)
-    , ((modMask .|. shiftMask, xK_l     ), sendMessage MirrorExpand)
+    , ((modMask .|. controlMask, xK_h     ), sendMessage Shrink)
+    , ((modMask .|. controlMask, xK_l     ), sendMessage Expand)
+    , ((modMask .|. controlMask, xK_j     ), sendMessage MirrorShrink)
+    , ((modMask .|. controlMask, xK_k     ), sendMessage MirrorExpand)
 
     -- quit, or restart
     , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
