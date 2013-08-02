@@ -23,9 +23,10 @@ compinit
 # End of lines added by compinstall
 
 #Prompt
+#. /usr/share/zsh/site-contrib/powerline.zsh
 autoload -U promptinit
 promptinit
-#prompt elite
+
 
 #Use a menu for tab completion
 zstyle ':completion:*' menu select
@@ -82,6 +83,7 @@ fi
 ##Path Environment Variables
 path+=$HOME/.gem/ruby/2.0.0/bin
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
+export GDR=/home/andrew/Documents/Research/g5d2_results
 
 ##Aliases
 # modified commands
@@ -152,7 +154,7 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 #Monitor Shenanigans
 alias addrmonr="xrandr --output DP1 --auto --rotate left --right-of LVDS1"
 alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
-alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && feh --bg-scale .background"
+alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
 alias dp1="xrandr --output DP1 --auto"
 alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
 

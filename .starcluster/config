@@ -123,14 +123,14 @@ VOLUMES = gem5home
 
 [cluster smallcluster]
 KEYNAME = starclusterkey
-CLUSTER_SIZE = 32
+CLUSTER_SIZE = 20
 CLUSTER_USER = sgeadmin
 CLUSTER_SHELL = bash
 NODE_IMAGE_ID = ami-4bbfc422
-NODE_INSTANCE_TYPE = m1.small
+NODE_INSTANCE_TYPE = m1.medium
 #NODE_INSTANCE_TYPE = m1.medium
 VOLUMES = gem5home
-#SPOT_BID = 0.24
+SPOT_BID = 0.24
 
 ###########################################
 ## Defining Additional Cluster Templates ##
