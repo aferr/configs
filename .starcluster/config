@@ -5,9 +5,9 @@
 # Configure the default cluster template to use when starting a cluster
 # defaults to 'smallcluster' defined below. This template should be usable
 # out-of-the-box provided you've configured your keypair correctly
-DEFAULT_TEMPLATE=smallcluster
+DEFAULT_TEMPLATE=microcluster
 # enable experimental features for this release
-#ENABLE_EXPERIMENTAL=True
+ENABLE_EXPERIMENTAL=True
 # number of seconds to wait when polling instances (default: 30s)
 #REFRESH_INTERVAL=15
 # specify a web browser to launch when viewing spot history plots
@@ -89,7 +89,7 @@ CLUSTER_SHELL = bash
 # The base x86_64 StarCluster AMI is ami-999d49f0
 # The base HVM StarCluster AMI is ami-4583572c
 #NODE_IMAGE_ID = ami-899d49e0
-NODE_IMAGE_ID = ami-00453b69
+NODE_IMAGE_ID = ami-0465226d
 # instance type for all cluster nodes
 # (options: cg1.4xlarge, c1.xlarge, m1.small, c1.medium, m2.xlarge, t1.micro, cc1.4xlarge, m1.medium, cc2.8xlarge, m1.large, m1.xlarge, m2.4xlarge, m2.2xlarge)
 NODE_INSTANCE_TYPE = t1.micro
@@ -121,16 +121,43 @@ VOLUMES = gem5home
 # request.
 #SPOT_BID = 0.50
 
-[cluster smallcluster]
+[cluster mediumcluster]
 KEYNAME = starclusterkey
-CLUSTER_SIZE = 20
+CLUSTER_SIZE = 128
 CLUSTER_USER = sgeadmin
 CLUSTER_SHELL = bash
 NODE_IMAGE_ID = ami-4bbfc422
 NODE_INSTANCE_TYPE = m1.medium
-#NODE_INSTANCE_TYPE = m1.medium
 VOLUMES = gem5home
 SPOT_BID = 0.24
+
+[cluster freecluster]
+KEYNAME = starclusterkey
+CLUSTER_SIZE = 128
+CLUSTER_USER = sgeadmin
+CLUSTER_SHELL = bash
+NODE_IMAGE_ID = ami-0465226d
+NODE_INSTANCE_TYPE = t1.micro
+VOLUMES = gem5home
+
+[cluster onelargenode]
+KEYNAME = starclusterkey
+CLUSTER_SIZE = 1
+CLUSTER_USER = sgeadmin
+CLUSTER_SHELL = bash
+NODE_IMAGE_ID = ami-0274336b
+NODE_INSTANCE_TYPE = m1.xlarge
+VOLUMES = gem5home
+#SPOT_BID = 0.41
+
+[cluster imager]
+KEYNAME = starclusterkey
+CLUSTER_SIZE = 1
+CLUSTER_USER = sgeadmin
+CLUSTER_SHELL = bash
+#NODE_IMAGE_ID = ami-4bbfc422
+NODE_IMAGE_ID = ami-0465226d
+NODE_INSTANCE_TYPE = t1.micro
 
 ###########################################
 ## Defining Additional Cluster Templates ##
@@ -193,8 +220,9 @@ SPOT_BID = 0.24
 # PARTITION = 2
 
 [volume gem5home]
-VOLUME_ID = vol-23b1217e
-MOUNT_PATH = /root
+#VOLUME_ID = vol-23b1217e
+VOLUME_ID = vol-3195856c
+MOUNT_PATH = /root/
 
 ############################################
 ## Configuring Security Group Permissions ##

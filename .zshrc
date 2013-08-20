@@ -24,8 +24,8 @@ compinit
 
 #Prompt
 #. /usr/share/zsh/site-contrib/powerline.zsh
-autoload -U promptinit
-promptinit
+#autoload -U promptinit
+#promptinit
 
 
 #Use a menu for tab completion
