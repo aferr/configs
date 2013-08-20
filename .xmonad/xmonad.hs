@@ -109,7 +109,7 @@ urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 -- borders
 borderWidth' = 2
 normalBorderColor'  = sbase0
-focusedBorderColor' = sorange
+focusedBorderColor' = sred
 
 -- tabs
 tabTheme1 = defaultTheme { decoHeight = 16
