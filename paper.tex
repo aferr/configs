@@ -176,8 +176,8 @@ have a different type from \icode{x}. Therfore,
 \begin{flalign*}
     &\Delta=\icode{f<>(v1:Integer<>,v2:$\tau$):Boolean<>}, 
     \icode{f<>(v1:$\tau$,v2:Integer<>):Integer<>} &\\
-    & \Gamma=x:\icode{Integer<>},y:\tau &\\
-    & \tau \neq \icode{Integer<>} &\\
+                                                  & \Gamma=x:\icode{Integer<>},y:\tau &\\
+                                                  & \tau \neq \icode{Integer<>} &\\
 \end{flalign*}
 
 \part
@@ -192,6 +192,39 @@ Iterable contains 3, \icode{f} must also be an integer. Therfore,
     & \Gamma=\icode{f:Integer<>,b:$\tau$,y:$\tau_1$} &\\
 \end{flalign*}
 
-
+\problem{}
+In context $\Psi = \emptyset$ and $\Theta = A, B$, show the full typing derivation proving that 
+\icode{Iterable<A$\cap$B>} is a subtype of \icode{Iterable<A>$\cap$Iterable<B>}.
+\solution
+\[
+    \dfrac{
+        \dfrac{
+            \dfrac{
+                \dfrac{}{\Psi|\Theta\vdash\icode{A <: A}}
+            }{
+            \Psi|\Theta\vdash
+                \icode{A$\cap$B <: A}
+            }
+        }{
+            \Psi|\Theta\vdash
+            \icode{Iterable<A$\cap$B> <: Iterable<A>} 
+        }
+        \quad
+        \dfrac{
+            \dfrac{
+                \dfrac{}{\Psi|\Theta\vdash\icode{B <: B}}
+            }{
+            \Psi|\Theta\vdash
+                \icode{A$\cap$B <: B}
+            }
+        }{
+            \Psi|\Theta\vdash
+            \icode{Iterable<A$\cap$B> <: Iterable<B>} 
+        }
+    }{
+        \Psi|\Theta\vdash
+        \icode{Iterable<A$\cap$B> <: Iterable<A>$\cap$Iterable<B>}
+    }
+\]
 \end{document}
 
