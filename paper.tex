@@ -1,0 +1,230 @@
+%*********************************************************************************
+% 
+% Paper Title Here 
+%
+%
+
+% Use IEEE style
+\documentclass[11]{jhwhw}
+
+
+
+%***********************************************************************************
+%
+% Packages
+%
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{amsmath}
+%\usepackage{psfrag}
+%\usepackage{fullpage}
+
+%***********************************************************************************
+%
+% MACROS start
+%
+\newcommand{\icode}{\texttt}
+
+%%myfigure label content caption
+%\newcommand{\myfigurewide}[3]
+%{\begin{figure*}[hbtp]\begin{center}#2\caption{#3}\label{#1}\end{center}\end{figure*}}
+%
+%%mygraphfigure label size content caption
+%\newcommand{\mygraphfigurewide}[4]{\myfigurewide{#1}{\includegraphics[#2]{#3}}{#4}}
+%
+%%myfigure label content caption
+%\newcommand{\myfigure}[3]
+%{\begin{figure}[hbt]\begin{center}#2\caption{#3}\label{#1}\end{center}\end{figure}}
+%
+%%mygraphfigure label size content caption
+%\newcommand{\mygraphfigure}[4]{\myfigure{#1}{\includegraphics[#2]{#3}}{#4}}
+%
+%%mygraphsubfigure label size content caption
+%\newcommand{\mygraphsubfigure}[4]
+%{\subfigure[#4]{\hspace{0.5cm}\includegraphics[#2]{#3}\label{#1}\hspace{0.5cm}}}
+%
+%\newtheorem{theorem}{Theorem} % SMALL
+%\newtheorem{definition}{Definition} % SMALL
+%\newtheorem{problem}{Problem} % SMALL
+%\newtheorem{lemma}{Lemma} % SMALL
+
+
+%***********************************************************************************
+%
+% Anonymization Macros
+%
+\author{Andrew Ferraiuolo}
+\title{CS5120 Homework 3}
+
+% Usage : \ifanonymized{anonymized}{notanonymized}
+
+% Uncomment one of the following
+
+%\newcommand{\ifanonymized}[2]{#1} % Anonymized
+
+%***********************************************************************************
+%
+% MACROS end
+%
+
+\begin{document}  
+
+\problem{}
+For each of the following Cubex statements, give typing contexts $\Delta$ and 
+$\Gamma$ (assume $\Psi=\Psi_{0}$ and the other contexts are empty) in which it 
+type checks with some return type and outgoing context, or else explain why it 
+can't be done.
+\begin{enumerate}
+    \item \icode {if (x + 2 == 4) return x;}
+    \item \icode {x := 0; while (f(x,y)) x := x + f(y,x);}
+    \item \icode {return [b, get([3, f], y)];}
+\end{enumerate}
+\solution
+\part
+%\[
+%    \dfrac{
+%        \dfrac{\Gamma=\icode{x:Integer<>}}{
+%            \Psi|\Theta|\Delta|\Gamma,\hat{\Gamma}|\vdash
+%            \icode{x:Integer<>}
+%        }
+%        \quad
+%        \dfrac{}{
+%            \Psi|\Theta\vdash
+%            \icode{Integer<>.plus:<>(2:Integer<>):Integer<>}
+%        }
+%    }{
+%        \Psi|\Theta|\Delta|\Gamma,\hat{\Gamma}|\vdash
+%        \icode{x.plus(2)} : \icode{Integer<>}
+%    }
+%\]
+%\vspace{0.5in}
+%\[
+%    \dfrac{
+%        \Psi|\Theta|\Delta|\Gamma,\hat{\Gamma}|\vdash
+%        \icode{x.plus(2)} : \icode{Integer<>}
+%        \quad
+%        \dfrac{
+%            \Psi=\Psi_{0}
+%            \quad
+%            \dfrac{}{
+%                \Psi|\Theta|\Delta|\Gamma,\hat{\Gamma}|\vdash
+%            4:\icode{Integer<>}}
+%        }{
+%            \Psi|\Theta|\vdash
+%            \icode{Integer<>.equals} : <>(4:\icode{Integer<>}) : 
+%            \icode{Boolean<>}
+%        }
+%    }{
+%        \Psi|\Theta|\Delta|\Gamma,\hat{\Gamma}|\vdash
+%        \icode{x.plus(2).equals(4)} : \icode {Boolean<>}
+%    }
+%\]
+%\vspace{0.5in}
+%\[
+%    \dfrac{
+%        \Psi|\Theta|\Delta|\Gamma,\hat{\Gamma}|\vdash
+%        \icode{x.plus(2).equals(4)} : \icode {Boolean<>}
+%        \quad
+%        \dfrac{
+%            \dfrac{
+%                \Gamma = \icode{x} : \icode{Integer<>}
+%            }{
+%                \Psi|\Theta|\Delta|\Gamma|\hat{\Gamma}|\vdash
+%                \icode{x} : \icode{Integer<>}
+%            }
+%        }{
+%            \Psi|\Theta|\Delta|\Gamma|\hat{\Gamma}|\vdash^{true}_{Integer<>}
+%            \icode{return x;} : \hat{\Gamma}
+%        }
+%        %        \quad
+%        %        \dfrac{}{
+%        %            
+%        %            \icode{\{\}} : \hat{\Gamma}
+%        %        }
+%    }{
+%        \Psi|\Theta|\Delta|\Gamma|\hat{\Gamma}|\vdash^{true}_{Integer<>}
+%        \icode{if(x.plus(2).equals(4)) return x; else \{\}} : \hat{\Gamma}
+%    }
+%\]
+
+In core cubex the statement is
+\[
+    \icode{if(x.plus<>(2).equals<>(4)) return x; else \{\}}
+\]
+The if statement requires that the expression in parenthesis has the 
+\icode{Boolean<>} type, and that both \(return x;\) and \{\} have the same 
+mutable variables available afterwards. The return statement does not make any 
+new variables available so the second requirement holds. The function 
+\icode{equals}, provided in the Integer class returns a boolean as needed.  
+Clearly, 4 is an integer so the type context in the argument of \icode{equals} 
+is correct. The expression \icode{x.plus(2)} has the type Integer, since the 
+function plus provided in the class Integer returns an Integer. This requires 
+that in the type context of the statment \icode{x} is an integer. Therefore, 
+\(\Delta=\emptyset\) and \(\Gamma=\icode{x:Integer<>}\)
+
+\part
+
+From the assignment \icode{x:=0;} \icode{x} must have the type 
+\icode{Integer<>}. The while statement requires that \icode{f(x,y)} has the 
+type \icode{Boolean<>}. Since \icode{x} is an integer and the result of 
+\icode{plus(f(y,x)} is assigned to it \icode{f(y,x)} must have the type 
+\icode{Integer<>}. Therefore \icode{f} is overloaded, and to distinguish 
+between these calls to different functions with the same name \icode{y} must 
+have a different type from \icode{x}. Therfore,
+
+\begin{flalign*}
+    &\Delta=\icode{f<>(v1:Integer<>,v2:$\tau$):Boolean<>}, 
+    \icode{f<>(v1:$\tau$,v2:Integer<>):Integer<>} &\\
+                                                  & \Gamma=x:\icode{Integer<>},y:\tau &\\
+                                                  & \tau \neq \icode{Integer<>} &\\
+\end{flalign*}
+
+\part
+
+The expression \icode{[b, get([3, f], y)]} forms an \icode{Iterable<$\tau$>} of 
+some type $\tau$. Each element of the iterable must have the same type, 
+including the return of the function \icode{get}. Since the innermost 
+Iterable contains 3, \icode{f} must also be an integer. Therfore,
+
+\begin{flalign*}
+    &\Delta=\icode{get<>($v_1$:Iterable<Integer<>>,$v_2:\tau_1$):$\tau$} &\\
+    & \Gamma=\icode{f:Integer<>,b:$\tau$,y:$\tau_1$} &\\
+\end{flalign*}
+
+\problem{}
+In context $\Psi = \emptyset$ and $\Theta = A, B$, show the full typing derivation proving that 
+\icode{Iterable<A$\cap$B>} is a subtype of \icode{Iterable<A>$\cap$Iterable<B>}.
+\solution
+\[
+    \dfrac{
+        \dfrac{
+            \dfrac{
+                \dfrac{}{\Psi|\Theta\vdash\icode{A <: A}}
+            }{
+            \Psi|\Theta\vdash
+                \icode{A$\cap$B <: A}
+            }
+        }{
+            \Psi|\Theta\vdash
+            \icode{Iterable<A$\cap$B> <: Iterable<A>} 
+        }
+        \quad
+        \dfrac{
+            \dfrac{
+                \dfrac{}{\Psi|\Theta\vdash\icode{B <: B}}
+            }{
+            \Psi|\Theta\vdash
+                \icode{A$\cap$B <: B}
+            }
+        }{
+            \Psi|\Theta\vdash
+            \icode{Iterable<A$\cap$B> <: Iterable<B>} 
+        }
+    }{
+        \Psi|\Theta\vdash
+        \icode{Iterable<A$\cap$B> <: Iterable<A>$\cap$Iterable<B>}
+    }
+\]
+\end{document}
+

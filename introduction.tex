@@ -1,0 +1,89 @@
+\section{Introduction}
+\label{sec:intro}
+\nocite{(*)}
+
+Cloud computing is emerging as a popular computing platform thanks to the
+flexibility that its ability to dynamically scale resources provides to clients.
+Unlike user-owned servers with fixed physical resources, in a cloud computing model,
+a client can lease virtual machines based on the actual demand, which can be 
+dynamically allocated to a pool of physical servers.
+Cloud computing 
+providers such as Amazon EC2 and Rackspace can maintain a large pool of physical
+resources and offer these computing resources inexpensively by leveraging 
+an economy of scale. 
+
+In order to benefit from the flexibility and cost efficiency of cloud computing,
+however, clients often need to share hardware resources with untrusted parties -
+potentially their competitors or malicious users. 
+The cloud computing infrastructures are therefore more 
+vulnerable to security threats such as side channel and covert channel attacks,
+which exploit interference in shared hardware. While cache-based 
+side-channel attacks~\cite{Percival,Bernstein,amazonattack} and various protection mechanisms~\cite{partitioncache,PLcache,RPcache} have been explored in
+this context, to 
+the best of our knowledge, timing channels through a shared memory channel have
+not been studied.  
+Like cache timing channels, a memory-based timing channel attack can be 
+carried out without physical access to the hardware because memory latencies
+of one program depends on memory accesses from other programs sharing the
+memory. 
+%And as with processes 
+%sharing a cache, processes sharing the same main memory and memory controller 
+%can interfere affecting the scheduling and return time of other memory 
+%accesses.  When two simultaneous memory requests require the same resources (in 
+%either the memory controller, or in the memory itself) the memory scheduler 
+%must determine when to issue each request to achieve the best performance. 
+
+In this paper, we demonstrate that memory timing channels do exist for today's 
+multi-core systems, and propose an efficient protection scheme to completely
+eliminate them. In a shared memory controller, the time that one memory request
+is scheduled depends on other competing requests. 
+Thus, there exists a memory timing channel between multiple virtual machines
+sharing memory in the cloud.  This timing channel can be 
+exploited by an adversary to carry out either a side-channel attack where a
+malicious VM measures its own memory timing to learn a secret in another VM, or
+a covert channel attack where two colluding VMs leak information to each 
+another despite restrictions on explicit communications.
+
+In order to develop a protection scheme, we first study sources of interference
+in a memory controller, and categorize them into three: queueing structure 
+interference, scheduler arbitration interference, and DRAM device resource 
+contention. Broadly, interference is caused by multiple VMs that access the 
+memory concurrently, allowing memory requests from different VMs to affect 
+the timing of others. 
+The goal of the protection scheme is to eliminate memory interference among 
+isolation domains, which contain one or more VMs. 
+
+We present an approach to prevent memory interference which we 
+refer to as temporal partitioning (TP). Temporal partitioning groups requests in 
+queues according to the isolation domain they belong to. Then, a fixed 
+time period, called a turn, is statically allocated to each domain in a time
+shared fashion so that a memory controller only schedules requests from one isolation 
+domain. At the end of each turn, a 
+short window of time during which no memory transactions can issue is added 
+to drain the in-flight transactions and prevent a timing channel caused by 
+shifts in refresh operations. Because scheduling decisions are exclusively 
+based on requests from one active domain during each turn and no request 
+from other isolation domains can cause interference, memory timing channels
+are eliminated.
+
+Experimental results suggest that the execution time overhead for temporal 
+partitioning is only $1.4\%$ on average using in-order cores, and $1.2\%$ using 
+out-of-order core when two isolation domains share a memory controller running
+SPEC 2006 benchmarks. 
+% ED: let's not oversell. Just focus on objective facts.
+%Despite its significance for 
+%security and its exceptionally small performance overhead, 
+Temporal partitioning also requires simple changes to the memory controller with
+a small mount of additional hardware resources: a revised queueing structure, a counter, 
+and a small amount of combinational logic to restrict scheduling decisions.
+%This not only minimizes area 
+%overhead, but simplifies verification and testing complexity.
+
+The rest of the paper is organized as follows.
+Section 2 discusses the memory timing channel problem and its importance to 
+cloud computing security. Section 3 analyzes a baseline memory controller for 
+timing channel violations and presents the temporal partitioning scheme.  
+Section 4 evaluates the security properties and execution time overheads of 
+temporal partitioning experimentally and explores the trade-off in turn length 
+selection using an architectural simulator. Section 5 discusses related work. 
+The paper concludes in Section 6.
