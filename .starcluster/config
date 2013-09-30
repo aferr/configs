@@ -129,11 +129,11 @@ CLUSTER_SHELL = bash
 NODE_IMAGE_ID = ami-4bbfc422
 NODE_INSTANCE_TYPE = m1.medium
 VOLUMES = gem5home
-SPOT_BID = 0.24
+SPOT_BID = 0.50
 
 [cluster freecluster]
 KEYNAME = starclusterkey
-CLUSTER_SIZE = 128
+CLUSTER_SIZE = 4
 CLUSTER_USER = sgeadmin
 CLUSTER_SHELL = bash
 NODE_IMAGE_ID = ami-0465226d
@@ -156,7 +156,7 @@ CLUSTER_SIZE = 1
 CLUSTER_USER = sgeadmin
 CLUSTER_SHELL = bash
 #NODE_IMAGE_ID = ami-4bbfc422
-NODE_IMAGE_ID = ami-0465226d
+NODE_IMAGE_ID = ami-4bbfc422
 NODE_INSTANCE_TYPE = t1.micro
 
 ###########################################
@@ -220,9 +220,13 @@ NODE_INSTANCE_TYPE = t1.micro
 # PARTITION = 2
 
 [volume gem5home]
-#VOLUME_ID = vol-23b1217e
 VOLUME_ID = vol-3195856c
 MOUNT_PATH = /root/
+
+[volume minivolume]
+VOLUME_ID = vol-23b1217e
+MOUNT_PATH = /root/
+
 
 ############################################
 ## Configuring Security Group Permissions ##
