@@ -82,8 +82,11 @@ fi
 
 ##Path Environment Variables
 path+=$HOME/.gem/ruby/2.0.0/bin
+export CLASSPATH=".:/usr/local/lib/antlr-4.1-complete.jar:$CLASSPATH"
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
 export GDR=/home/andrew/Documents/Research/g5d2_results
+export COURSES=/home/andrew/Documents/Courses
+export PROGASGN=$COURSES/CS5120/ProgAssgn
 
 ##Aliases
 # modified commands
@@ -176,3 +179,7 @@ alias fcluster="sftp andrew@ubuntu-test.csl.cornell.edu"
 
 #starcluster
 alias fixshell="starcluster put imagehost /lib/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termite"
+
+#antlr
+alias antlr4='java -jar /usr/local/lib/antlr-4.1-complete.jar'
+alias grun='java org.antlr.v4.runtime.misc.TestRig'
