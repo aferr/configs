@@ -52,6 +52,8 @@ AWS_USER_ID= 9299-3216-8514
 [key starclusterkey]
 KEY_LOCATION=~/.ec2keys/starclusterkey.rsa
 
+[key key2]
+KEY_LOCATION=~/.ec2keys/key2.rsa
 # You can of course have multiple keypair sections
 # [key myotherkey]
 # KEY_LOCATION=~/.ssh/myotherkey.rsa
