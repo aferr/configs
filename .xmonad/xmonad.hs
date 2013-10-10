@@ -107,7 +107,7 @@ myGSConfig = defaultGSConfig { gs_cellwidth = 160 }
 urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- borders
-borderWidth' = 2
+borderWidth' = 3
 normalBorderColor'  = sbase0
 focusedBorderColor' = sred
 
@@ -169,6 +169,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- workspaces
     , ((modMask,	       xK_Left  ), prevWS)
     , ((modMask,	       xK_Right ), nextWS)
+    , ((modMask,           xK_y     ), nextScreen)
 
     -- layouts
     , ((modMask,               xK_space ), sendMessage NextLayout)

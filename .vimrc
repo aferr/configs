@@ -137,3 +137,7 @@ colorscheme solarized
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
+
+"vim-airline
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1

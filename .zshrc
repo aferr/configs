@@ -83,6 +83,7 @@ fi
 ##Path Environment Variables
 path+=$HOME/.gem/ruby/2.0.0/bin
 export CLASSPATH=".:/usr/local/lib/antlr-4.1-complete.jar:$CLASSPATH"
+export SOURCEPATH="/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/,/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/AST/"
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
 export GDR=/home/andrew/Documents/Research/g5d2_results
 export COURSES=/home/andrew/Documents/Courses
