@@ -9,7 +9,7 @@ Config { font = "xft:Droid Sans Mono:size=10:hinting=true:antialias=true"
 			"-L","50","-H","75",
 			"--normal","#859900","--high","#dc322f","--low","#268bd2"] 
 			36000
-                    , Run Network "wlan0" 
+                    , Run Network "wlp3s0" 
 			["-L","0","-H","300",
 			"--normal","#859900","--high","#dc322f"]
 			 7
@@ -34,5 +34,5 @@ Config { font = "xft:Droid Sans Mono:size=10:hinting=true:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% * %memory% * %wlan0% | %battery% | Vol: %volume% <fc=#cb4b16>%date%</fc>" 
+       , template = "%StdinReader% }{ %cpu% * %memory% * %wlp3s0% | %battery% | Vol: %volume% <fc=#cb4b16>%date%</fc>" 
       }
