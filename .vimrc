@@ -114,10 +114,19 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" regex engine speedup for ruby
+set re=1
+let g:ruby_path="/usr/bin/ruby"
+
+" tabulation
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+
+" tab completion
+set wildmode=longest,list,full
+set wildmenu
 
 set number
 " show the open filename
