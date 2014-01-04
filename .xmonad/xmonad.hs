@@ -157,10 +157,9 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_f     ), spawn "termite -e ranger" )
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
-    , ((modMask,	       xK_m     ), safeSpawn "matlab -desktop" [])
+    , ((modMask,	       xK_m     ), safeSpawn "mendeleydesktop" [])
     , ((modMask,	       xK_v     ), safeSpawn "VirtualBox" [])
-    , ((modMask .|. shiftMask, xK_m     ), safeSpawn "mendeleydesktop" [])
-    -- , ((modMask,	       xK_o     ), safeSpawn "xterm" [])
+    , ((modMask .|. shiftMask, xK_m     ), safeSpawn "matlab -desktop" [])
     , ((modMask .|. shiftMask, xK_c     ), kill)
 
     -- grid
