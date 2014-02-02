@@ -1,9 +1,9 @@
 #!/bin/bash
 
 shopt -s nullglob
-#cd ~/Walls/Orio_1080
-cd ~/Walls/AdventureTime
-cd ~/Walls/GW2
+cd ~/Walls/Orio_1080
+#cd ~/Walls/AdventureTime
+#cd ~/Walls/GW2
 
 while true; do
     files=()
