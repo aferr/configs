@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 export EDITOR="vim"
-export BROWSER="google-chrome"
+export BROWSER="google-chrome-stable"
 
 ## {Oh-my-zsh} ##
 ZSH=/usr/share/oh-my-zsh
@@ -162,7 +162,7 @@ alias chgrp='chgrp --preserve-root'
 
 # yaourt aliases (if applicable, replace 'yaourt' with your favorite AUR helper)
 alias pac="yaourt -S"      # default action     - install one or more packages
-alias pacu="yaourt -Syu"   # '[u]pdate'         - upgrade all packages to their newest version
+alias pacu="yaourt -Syua --noconfirm"   # '[u]pdate'         - upgrade all packages to their newest version
 alias pacs="yaourt -Ss"    # '[s]earch'         - search for a package using one or more keywords
 alias paci="yaourt -Si"    # '[i]nfo'           - show information about a package
 alias pacr="yaourt -Rs"     # '[r]emove'         - uninstall one or more packages
@@ -177,7 +177,8 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 #Monitor Shenanigans
 alias addrmonr="xrandr --output DP1 --auto --rotate left --right-of LVDS1"
 alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
-alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
+#alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
+alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && feh --bg-scale ~/.background"
 alias dp1="xrandr --output DP1 --auto"
 alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
 
