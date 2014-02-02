@@ -15,6 +15,7 @@ import XMonad.Util.Run (safeSpawn)
 -- actions
 import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleWS
+import XMonad.Actions.SpawnOn
 
 -- hooks
 import XMonad.Hooks.DynamicLog
@@ -153,7 +154,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_p     ), safeSpawn "dmenu_run" []) 
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "claws-mail" [])
-    , ((modMask,	       xK_w     ), safeSpawn "google-chrome" [])
+    , ((modMask,	       xK_w     ), safeSpawn "google-chrome-stable" [])
     , ((modMask,               xK_f     ), spawn "termite -e ranger" )
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
