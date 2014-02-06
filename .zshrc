@@ -162,11 +162,7 @@ alias chgrp='chgrp --preserve-root'
 
 # yaourt aliases (if applicable, replace 'yaourt' with your favorite AUR helper)
 alias pac="yaourt -S"      # default action     - install one or more packages
-<<<<<<< HEAD
-alias pacu="yaourt -Syua"   # '[u]pdate'         - upgrade all packages to their newest version
-=======
 alias pacu="yaourt -Syua --noconfirm"   # '[u]pdate'         - upgrade all packages to their newest version
->>>>>>> 1050f03407aa9d444165afa1570bcf875cdfdc5f
 alias pacs="yaourt -Ss"    # '[s]earch'         - search for a package using one or more keywords
 alias paci="yaourt -Si"    # '[i]nfo'           - show information about a package
 alias pacr="yaourt -Rs"     # '[r]emove'         - uninstall one or more packages
@@ -181,12 +177,7 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 #Monitor Shenanigans
 alias addrmonr="xrandr --output DP1 --auto --rotate left --right-of LVDS1"
 alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
-<<<<<<< HEAD
-alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
-=======
-#alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
 alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && feh --bg-scale ~/.background"
->>>>>>> 1050f03407aa9d444165afa1570bcf875cdfdc5f
 alias dp1="xrandr --output DP1 --auto"
 alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
 
@@ -212,11 +203,8 @@ alias fixshell="starcluster put imagehost /lib/terminfo/x/xterm-termite /lib/ter
 #antlr
 alias antlr4='java -jar /usr/local/lib/antlr-4.1-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
-<<<<<<< HEAD
-=======
 
 #git aliases'
 alias poosh="git push"
 alias pewl="git pull"
 alias gxargs="xargs"
->>>>>>> 1050f03407aa9d444165afa1570bcf875cdfdc5f
