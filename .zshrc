@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 export EDITOR="vim"
+export BROWSER="google-chrome-stable"
 
 ## {Oh-my-zsh} ##
 ZSH=/usr/share/oh-my-zsh
@@ -38,6 +39,9 @@ if [[ -f ~/.dir_colors ]] ; then
 elif [[ -f /etc/DIR_COLORS ]] ; then
     eval $(dircolors -b /etc/DIR_COLORS)
 fi
+
+#enable extended globbing
+setopt extended_glob
 
 #Use tab completion with aliases
 setopt completealiases
@@ -80,15 +84,31 @@ printf '%s' "${terminfo[rmkx]}"
     zle -N zle-line-finish
 fi
 
-##Path Environment Variables
+#-----------------------------------------------------------------------------
+# Path Environment Variables
+#-----------------------------------------------------------------------------
+#ruby gems
 path+=$HOME/.gem/ruby/2.0.0/bin
+
+#syntastic
 export CLASSPATH=".:/usr/local/lib/antlr-4.1-complete.jar:$CLASSPATH"
+export SOURCEPATH="/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/,/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/AST/"
+
+#ec2
+path+=$EC2_HOME/bin
+export EC2_PRIVATE_KEY=pk.pem
+export EC2_CERT=cert.pem
+
+#convenience
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
 export GDR=/home/andrew/Documents/Research/g5d2_results
 export COURSES=/home/andrew/Documents/Courses
-export PROGASGN=$COURSES/CS5120/ProgAssgn
+export PA=/home/andrew/Documents/Courses/CS5120/CS5120_PA
 
-##Aliases
+#-----------------------------------------------------------------------------
+# Aliases
+#-----------------------------------------------------------------------------
+
 # modified commands
 alias diff='colordiff'              # requires colordiff package
 alias grep='grep --color=auto'
@@ -99,7 +119,7 @@ alias mkdir='mkdir -p -v'
 alias nano='nano -w'
 alias ping='ping -c 5'
 alias ..='cd ..'
-alias vi='vim'
+alias vi='vim -O'
 alias top='htop'
 
 # new commands
@@ -142,7 +162,11 @@ alias chgrp='chgrp --preserve-root'
 
 # yaourt aliases (if applicable, replace 'yaourt' with your favorite AUR helper)
 alias pac="yaourt -S"      # default action     - install one or more packages
+<<<<<<< HEAD
 alias pacu="yaourt -Syua"   # '[u]pdate'         - upgrade all packages to their newest version
+=======
+alias pacu="yaourt -Syua --noconfirm"   # '[u]pdate'         - upgrade all packages to their newest version
+>>>>>>> 1050f03407aa9d444165afa1570bcf875cdfdc5f
 alias pacs="yaourt -Ss"    # '[s]earch'         - search for a package using one or more keywords
 alias paci="yaourt -Si"    # '[i]nfo'           - show information about a package
 alias pacr="yaourt -Rs"     # '[r]emove'         - uninstall one or more packages
@@ -157,7 +181,12 @@ alias pacm="makepkg -fci"  # '[m]ake'           - make package from PKGBUILD fil
 #Monitor Shenanigans
 alias addrmonr="xrandr --output DP1 --auto --rotate left --right-of LVDS1"
 alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
+<<<<<<< HEAD
 alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
+=======
+#alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
+alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && feh --bg-scale ~/.background"
+>>>>>>> 1050f03407aa9d444165afa1570bcf875cdfdc5f
 alias dp1="xrandr --output DP1 --auto"
 alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
 
@@ -183,3 +212,11 @@ alias fixshell="starcluster put imagehost /lib/terminfo/x/xterm-termite /lib/ter
 #antlr
 alias antlr4='java -jar /usr/local/lib/antlr-4.1-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
+<<<<<<< HEAD
+=======
+
+#git aliases'
+alias poosh="git push"
+alias pewl="git pull"
+alias gxargs="xargs"
+>>>>>>> 1050f03407aa9d444165afa1570bcf875cdfdc5f

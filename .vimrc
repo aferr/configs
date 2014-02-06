@@ -114,10 +114,19 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
+" regex engine speedup for ruby
+set re=1
+let g:ruby_path="/usr/bin/ruby"
+
+" tabulation
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+
+" tab completion
+set wildmode=longest,list,full
+set wildmenu
 
 set number
 " show the open filename
@@ -137,3 +146,7 @@ colorscheme solarized
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
+
+"vim-airline
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1

@@ -15,6 +15,7 @@ import XMonad.Util.Run (safeSpawn)
 -- actions
 import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleWS
+import XMonad.Actions.SpawnOn
 
 -- hooks
 import XMonad.Hooks.DynamicLog
@@ -107,7 +108,7 @@ myGSConfig = defaultGSConfig { gs_cellwidth = 160 }
 urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- borders
-borderWidth' = 2
+borderWidth' = 3
 normalBorderColor'  = sbase0
 focusedBorderColor' = sred
 
@@ -153,14 +154,13 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_p     ), safeSpawn "dmenu_run" []) 
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "claws-mail" [])
-    , ((modMask,	       xK_w     ), safeSpawn "google-chrome" [])
+    , ((modMask,	       xK_w     ), safeSpawn "google-chrome-stable" [])
     , ((modMask,               xK_f     ), spawn "termite -e ranger" )
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
-    , ((modMask,	       xK_m     ), safeSpawn "matlab -desktop" [])
+    , ((modMask,	       xK_m     ), safeSpawn "mendeleydesktop" [])
     , ((modMask,	       xK_v     ), safeSpawn "VirtualBox" [])
-    , ((modMask .|. shiftMask, xK_m     ), safeSpawn "mendeleydesktop" [])
-    -- , ((modMask,	       xK_o     ), safeSpawn "xterm" [])
+    , ((modMask .|. shiftMask, xK_m     ), safeSpawn "matlab -desktop" [])
     , ((modMask .|. shiftMask, xK_c     ), kill)
 
     -- grid
@@ -169,6 +169,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- workspaces
     , ((modMask,	       xK_Left  ), prevWS)
     , ((modMask,	       xK_Right ), nextWS)
+    , ((modMask,           xK_y     ), nextScreen)
 
     -- layouts
     , ((modMask,               xK_space ), sendMessage NextLayout)
