@@ -84,8 +84,11 @@ printf '%s' "${terminfo[rmkx]}"
     zle -N zle-line-finish
 fi
 
+<<<<<<< HEAD
 export STEAM_RUNTIME=0
 export STEAM_FRAME_FORCE_CLOSE=1
+=======
+>>>>>>> 2111de2ae06ac21ceed2f6ee9fce464d1d70adee
 #-----------------------------------------------------------------------------
 # Path Environment Variables
 #-----------------------------------------------------------------------------
@@ -97,12 +100,18 @@ export CLASSPATH=".:/usr/local/lib/antlr-4.1-complete.jar:$CLASSPATH"
 export SOURCEPATH="/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/,/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/AST/"
 
 #ec2
+<<<<<<< HEAD
 #  export EC2_HOME=~/.ec2
 #  path+=$EC2_HOME/bin
 #  # export EC2_PRIVATE_KEY=pk.pem
 #  export EC2_CERT=cert-starcluster.pem
 #  # export EC2_PRIVATE_KEY=pk.pem
 #  export EC2_CERT=cert-starcluster.pem
+=======
+path+=$EC2_HOME/bin
+export EC2_PRIVATE_KEY=pk.pem
+export EC2_CERT=cert.pem
+>>>>>>> 2111de2ae06ac21ceed2f6ee9fce464d1d70adee
 
 #convenience
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
@@ -126,7 +135,10 @@ alias nano='nano -w'
 alias ping='ping -c 5'
 alias ..='cd ..'
 alias vi='vim -O'
+<<<<<<< HEAD
 alias vim='/usr/bin/vim -O'
+=======
+>>>>>>> 2111de2ae06ac21ceed2f6ee9fce464d1d70adee
 alias top='htop'
 
 # new commands
@@ -218,6 +230,9 @@ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias poosh="git push"
 alias pewl="git pull"
 alias gxargs="xargs"
+<<<<<<< HEAD
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+=======
+>>>>>>> 2111de2ae06ac21ceed2f6ee9fce464d1d70adee
