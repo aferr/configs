@@ -146,6 +146,7 @@ colorscheme solarized
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
+let g:Imap_UsePlaceHolders = 0
 
 "vim-airline
 let g:airline_powerline_fonts=1
