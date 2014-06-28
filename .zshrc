@@ -84,11 +84,8 @@ printf '%s' "${terminfo[rmkx]}"
     zle -N zle-line-finish
 fi
 
-<<<<<<< HEAD
 export STEAM_RUNTIME=0
 export STEAM_FRAME_FORCE_CLOSE=1
-=======
->>>>>>> 2111de2ae06ac21ceed2f6ee9fce464d1d70adee
 #-----------------------------------------------------------------------------
 # Path Environment Variables
 #-----------------------------------------------------------------------------
