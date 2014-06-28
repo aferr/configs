@@ -1,4 +1,5 @@
 #!/bin/zsh
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM 
 
 export EDITOR="vim"
 export BROWSER="google-chrome-stable"
@@ -27,7 +28,6 @@ compinit
 #. /usr/share/zsh/site-contrib/powerline.zsh
 #autoload -U promptinit
 #promptinit
-
 
 #Use a menu for tab completion
 zstyle ':completion:*' menu select
@@ -84,6 +84,8 @@ printf '%s' "${terminfo[rmkx]}"
     zle -N zle-line-finish
 fi
 
+export STEAM_RUNTIME=0
+export STEAM_FRAME_FORCE_CLOSE=1
 #-----------------------------------------------------------------------------
 # Path Environment Variables
 #-----------------------------------------------------------------------------
@@ -95,13 +97,17 @@ export CLASSPATH=".:/usr/local/lib/antlr-4.1-complete.jar:$CLASSPATH"
 export SOURCEPATH="/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/,/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/AST/"
 
 #ec2
-path+=$EC2_HOME/bin
-export EC2_PRIVATE_KEY=pk.pem
-export EC2_CERT=cert.pem
+#  export EC2_HOME=~/.ec2
+#  path+=$EC2_HOME/bin
+#  # export EC2_PRIVATE_KEY=pk.pem
+#  export EC2_CERT=cert-starcluster.pem
+#  # export EC2_PRIVATE_KEY=pk.pem
+#  export EC2_CERT=cert-starcluster.pem
 
 #convenience
 export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
 export GDR=/home/andrew/Documents/Research/g5d2_results
+export TCD=/home/andrew/Documents/Research/timing_compartments_data
 export COURSES=/home/andrew/Documents/Courses
 export PA=/home/andrew/Documents/Courses/CS5120/CS5120_PA
 
@@ -120,6 +126,7 @@ alias nano='nano -w'
 alias ping='ping -c 5'
 alias ..='cd ..'
 alias vi='vim -O'
+alias vim='/usr/bin/vim -O'
 alias top='htop'
 
 # new commands
@@ -150,6 +157,7 @@ alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
 alias lm='la | more'
+alias sl='/usr/bin/sl'
 
 # safety features
 alias cp='cp'
@@ -183,7 +191,8 @@ alias dp1="xrandr --output DP1 --auto"
 alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
 
 #ssh/sftp
-alias gohome="ssh -X andrew@aferr.mooo.com"
+alias gohome="ssh -X andrew@24.59.191.34"
+#alias gohome="ssh -X andrew@aferr.mooo.com"
 alias fohome="sftp andrew@aferr.mooo.com"
 alias raspi="ssh -p 5432 andrew@aferr.mooo.com"
 
@@ -209,3 +218,6 @@ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias poosh="git push"
 alias pewl="git pull"
 alias gxargs="xargs"
+
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
