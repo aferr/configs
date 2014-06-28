@@ -217,6 +217,8 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0		     ,0x1008FF11), spawn "sh /usr/bin/vol_down")
     , ((0		     ,0x1008FF13), spawn "sh /usr/bin/vol_up")
     , ((0		     ,0x1008FF12), spawn "sh /usr/bin/mute_toggle")
+    , (( modMask .|. shiftMask, xK_equal ), spawn "sh /usr/bin/vol_up")
+    , (( modMask              , xK_minus ), spawn "sh /usr/bin/vol_down")
     ]
     ++
     -- mod-[1..9] %! Switch to workspace N
