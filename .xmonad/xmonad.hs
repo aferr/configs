@@ -85,6 +85,8 @@ myConfig = defaultConfig { workspaces = workspaces'
 manageHook' = composeAll [ isFullscreen             --> doFullFloat
 			 -- [isFullscreen --> (doF W.focusDown <+> doFullFloat,
                          , className =? "Deluge"    --> doShift "0"
+                         , className =? "Steam"          --> doFloat
+                         , className =? "steam"          --> doFullFloat  -- bigpicture-mode
                          , insertPosition Below Newer
                          , transience'
                          ]
