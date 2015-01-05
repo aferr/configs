@@ -123,7 +123,7 @@ tabTheme1 = defaultTheme { decoHeight = 16
                          }
 
 -- workspaces
-workspaces' = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+workspaces' = ["1", "2", "3", "4"]
 
 -- layouts
 layoutHook' = windowNavigation (tile ||| mtile ||| tab ||| full ||| sp)
@@ -215,6 +215,12 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
+    -- screenshot
+    -- full display
+    -- , ((modMask, xK_Print), spawn "scrot -s --quality 100 screen_%Y-%m-%d-%H-%M-%S.png" )
+    -- selection box
+    , ((modMask, xK_Print), spawn "sleep 0.2; scrot -s $HOME/screenshots/%Y-%m-%d-%H%M%S.png" )
+
     -- volume
     , ((0		     ,0x1008FF11), spawn "sh /usr/bin/vol_down")
     , ((0		     ,0x1008FF13), spawn "sh /usr/bin/vol_up")
@@ -226,7 +232,7 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N
     [((m .|. modMask, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_4]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     -- was greedyView instead of view
     ++
