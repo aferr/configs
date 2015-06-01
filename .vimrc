@@ -37,11 +37,11 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
+"if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
+" else
+"   set backup		" keep a backup file
+" endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -137,9 +137,13 @@ set ls=2
 set textwidth=79
 set formatoptions=c,q,r,t,w
 
+"Syntax Highlighting
+au BufRead,BufNewFile *.g set syntax=antlr3
+au BufRead,BufNewFile *.jif set syntax=java
+
 " Solarized colors and preferences
 let g:solarized_termtrans=1
-set background=light
+set background=dark
 colorscheme solarized
 
 "vim-latex
@@ -147,7 +151,13 @@ filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 let g:Imap_UsePlaceHolders = 0
+if has("autocmd")
+    autocmd BufRead *.tex set spell
+endif
 
 "vim-airline
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
+
+"fix for fugitive
+set directory=$HOME/.vim/tmp//,.

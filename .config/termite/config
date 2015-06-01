@@ -9,7 +9,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Inconsolata 11
+font = Inconsolata 12
 #font = Monospace 9
 scrollback_lines = 9001
 search_wrap = true
@@ -18,7 +18,7 @@ search_wrap = true
 
 # 0.0: opaque, 1.0: transparent
 transparency = 0.0
-pseudo_transparency = true
+pseudo_transparency = false
 
 # "system", "on" or "off"
 cursor_blink = system
@@ -64,9 +64,16 @@ cursor_shape = block
 #S_green   =     #859900
 
 #solarized palette
-foreground = #657b83
-background = #fdf6e3
-foreground_bold = #b58900
+# light
+#foreground = #839496
+#background = #fdf6e3
+#foreground_bold = #b58900
+
+# dark
+# foreground = #839496
+# background = #002b36
+background = #S_Base03
+foreground = #S_Base0
 
 #black
 color0  = #073642

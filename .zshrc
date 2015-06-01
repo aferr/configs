@@ -1,14 +1,17 @@
 #!/bin/zsh
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM 
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM 
 
 export EDITOR="vim"
 export BROWSER="google-chrome-stable"
 
 ## {Oh-my-zsh} ##
 ZSH=/usr/share/oh-my-zsh
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_POWERLINE_SHOW_OS=false
+ZSH_THEME="solarized-powerline"
+ZSH_POWERLINE_SHOW_GIT_STATUS=false
 DISABLE_AUTO_UPDATE="true"
-pligins=(git)
+plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Lines configured by zsh-newuser-install
@@ -26,8 +29,8 @@ compinit
 
 #Prompt
 #. /usr/share/zsh/site-contrib/powerline.zsh
-#autoload -U promptinit
-#promptinit
+autoload -U promptinit
+promptinit
 
 #Use a menu for tab completion
 zstyle ':completion:*' menu select
@@ -84,17 +87,33 @@ printf '%s' "${terminfo[rmkx]}"
     zle -N zle-line-finish
 fi
 
-export STEAM_RUNTIME=0
-export STEAM_FRAME_FORCE_CLOSE=1
+# Search key binding fix
+vi-search-fix() {
+  zle vi-cmd-mode
+  zle .vi-history-search-backward
+}
+
+autoload vi-search-fix
+zle -N vi-search-fix
+bindkey -M viins '\e/' vi-search-fix
+
 #-----------------------------------------------------------------------------
 # Path Environment Variables
 #-----------------------------------------------------------------------------
 #ruby gems
-path+=$HOME/.gem/ruby/2.0.0/bin
+path+=$HOME/.gem/ruby/2.2.0/bin
+
+#Quartus
+path+=$HOME/altera/quartus/bin
+path+=$HOME/altera/modelsim_ase/linuxaloem
 
 #syntastic
 export CLASSPATH=".:/usr/local/lib/antlr-4.1-complete.jar:$CLASSPATH"
 export SOURCEPATH="/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/,/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/AST/"
+
+#pin
+path+=/opt/pin
+export PINPATH="/opt/pin/"
 
 #ec2
 #  export EC2_HOME=~/.ec2
@@ -104,16 +123,42 @@ export SOURCEPATH="/home/andrew/Documents/COURSES/CS5120/CS5120_PA3/,/home/andre
 #  # export EC2_PRIVATE_KEY=pk.pem
 #  export EC2_CERT=cert-starcluster.pem
 
-#convenience
-export G5DRAM=/home/andrew/Documents/Research/GEM5_DRAMSim2
-export GDR=/home/andrew/Documents/Research/g5d2_results
-export TCD=/home/andrew/Documents/Research/timing_compartments_data
-export COURSES=/home/andrew/Documents/Courses
-export PA=/home/andrew/Documents/Courses/CS5120/CS5120_PA
+# Google Cloud Compute Engine
+#path
+source /opt/google-cloud-sdk/path.zsh.inc
+#tab completion
+source /opt/google-cloud-sdk/completion.zsh.inc
+#use python2 instead of python3
+export CLOUDSDK_PYTHON=/usr/bin/python2
 
-#-----------------------------------------------------------------------------
+#convenience
+export DATA=/home/andrew/Documents/Research/data/
+export PROJ=/home/andrew/Documents/Research/projects/
+export PAPER=/home/andrew/Documents/Research/papers/
+export INF=/home/andrew/Documents/Research/informal_writeups/
+export TCFS=/home/andrew/Documents/Research/tc_fullsystem/
+
+export LMC=$PROJ/LatticeMemCtl/
+export LMCD=$DATA/lattice_memctl_data/
+export LMCP=$PAPER/lattice_memctl/
+
+export GDR=/home/andrew/Documents/Research/data/g5d2_results
+export TCD=/home/andrew/Documents/Research/data/timing_compartments_data
+export G5DRAM=/home/andrew/Documents/Research/projects/GEM5_DRAMSim2
+export COURSES=/home/andrew/Documents/Courses
+export ECE2300=/home/andrew/Documents/Grive/ECE2300
+export PA=/home/andrew/Documents/Courses/CS5120/CS5120_PA
+export GRIVE=/home/andrew/Documents/Grive
+
+#------------------------------------------------------------------------------
+# Steam
+#------------------------------------------------------------------------------
+export STEAM_RUNTIME=1
+export STEAM_FRAME_FORCE_CLOSE=1
+
+#------------------------------------------------------------------------------
 # Aliases
-#-----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 # modified commands
 alias diff='colordiff'              # requires colordiff package
@@ -188,24 +233,25 @@ alias addrmon="xrandr --output DP1 --auto --right-of LVDS1"
 #alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && wallpaper_once"
 alias addlmon="xrandr --output DP1 --auto --left-of LVDS1 && feh --bg-scale ~/.background"
 alias dp1="xrandr --output DP1 --auto"
-alias dp1off="xrandr --output DP1 --off && feh --bg-scale .background"
+alias dp1off="xrandr --output DP1 --off"
 
 #ssh/sftp
-alias gohome="ssh -X andrew@24.59.191.34"
-#alias gohome="ssh -X andrew@aferr.mooo.com"
+alias gohome="ssh -X andrew@aferr.mooo.com"
 alias fohome="sftp andrew@aferr.mooo.com"
 alias raspi="ssh -p 5432 andrew@aferr.mooo.com"
 
-alias amdpool="ssh -X af433@amdpool-02.ece.cornell.edu"
-alias vlsi="ssh -X andrew@vlsi.csl.cornell.edu"
-alias hana="ssh -X andrew@hana.csl.cornell.edu"
+alias amdpool="ssh af433@amdpool-02.ece.cornell.edu"
+alias vlsi="ssh andrew@vlsi.csl.cornell.edu"
+alias hana="ssh andrew@hana.csl.cornell.edu"
 alias fana="sftp andrew@hana.csl.cornell.edu"
-alias lilac="ssh -X andrew@lilac.csl.cornell.edu"
+alias lilac="ssh andrew@lilac.csl.cornell.edu"
 alias filac="sftp andrew@lilac.csl.cornell.edu"
-alias cluster="ssh -X andrew@cluster.csl.cornell.edu"
+alias cluster="ssh andrew@cluster.csl.cornell.edu"
 alias fluster="sftp andrew@cluster.csl.cornell.edu"
-alias tcluster="ssh -X andrew@ubuntu-test.csl.cornell.edu"
+alias tcluster="ssh andrew@ubuntu-test.csl.cornell.edu"
 alias fcluster="sftp andrew@ubuntu-test.csl.cornell.edu"
+
+alias perf="ruby $G5DRAM/parsers/performance.rb"
 
 #starcluster
 alias fixshell="starcluster put imagehost /lib/terminfo/x/xterm-termite /lib/terminfo/x/xterm-termite"
@@ -214,8 +260,15 @@ alias fixshell="starcluster put imagehost /lib/terminfo/x/xterm-termite /lib/ter
 alias antlr4='java -jar /usr/local/lib/antlr-4.1-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 
+#jif
+export JAVA_HOME='/usr/lib/jvm/java-8-jdk/'
+export JIF='/home/andrew/Documents/Research/projects/jif-3.4.2'
+path+=$JIF/bin/
+
 #git aliases'
 alias poosh="git push"
 alias pewl="git pull"
 alias gxargs="xargs"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Prompt Options
