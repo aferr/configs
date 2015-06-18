@@ -12,6 +12,8 @@ import qualified Data.Map as M
 import System.Exit
 import XMonad.Util.Run (safeSpawn)
 
+import XMonad.Config.Gnome
+
 -- actions
 import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleWS
@@ -34,6 +36,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Grid
 import XMonad.Layout.GridVariants
 import XMonad.Layout.WindowNavigation
+import XMonad.Layout.Minimize
 import qualified XMonad.Layout.WindowNavigation
 
 -------------------------------------------------------------------------------
@@ -58,13 +61,15 @@ sgreen  =       "#859900"
 -------------------------------------------------------------------------------
 -- Main --
 main :: IO ()
-main = xmonad =<< statusBar cmd pp kb conf
+main = xmonad =<< statusBar cmd pp kb conf 
   where 
-    uhook = withUrgencyHookC NoUrgencyHook urgentConfig
+    -- uhook = withUrgencyHookC NoUrgencyHook urgentConfig
     cmd = "bash -c \"tee >(xmobar -x0) | xmobar -x1\""
     pp = customPP
     kb = toggleStrutsKey
-    conf = uhook myConfig
+    conf = myConfig
+    -- conf = uhook myConfig
+
 
 -------------------------------------------------------------------------------
 -- Configs --
@@ -126,8 +131,9 @@ tabTheme1 = defaultTheme { decoHeight = 16
 workspaces' = ["1", "2", "3", "4"]
 
 -- layouts
-layoutHook' = windowNavigation (tile ||| mtile ||| tab ||| full ||| sp)
+layoutHook' = windowNavigation (mini ||| tab )
   where
+    mini = renamed [Replace "[m]"] $ smartBorders $ minimize (Tall 1 (3/100) (1/2))
     golden = toRational (2/(1+sqrt(5)::Double))
     rt = ResizableTall 1 (2/100) (1/2) []
     tile = renamed [Replace "[]="] $ smartBorders rt
@@ -160,13 +166,16 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_f     ), spawn "termite -e ranger" )
     , ((modMask,               xK_i     ), safeSpawn "inkscape" [])
     , ((modMask .|. shiftMask, xK_g     ), safeSpawn "gimp" [])
-    , ((modMask,	       xK_m     ), safeSpawn "mendeleydesktop" [])
     , ((modMask,	       xK_v     ), safeSpawn "VirtualBox" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "matlab -desktop" [])
     , ((modMask .|. shiftMask, xK_c     ), kill)
 
     -- grid
     , ((modMask              , xK_g     ), goToSelected myGSConfig)
+
+    -- minimization
+    , ((modMask,               xK_m    ), withFocused minimizeWindow)
+    , ((modMask .|. shiftMask, xK_m    ), sendMessage RestoreNextMinimizedWin)
 
     -- workspaces
     , ((modMask,	       xK_Left  ), prevWS)
